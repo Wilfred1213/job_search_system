@@ -1,0 +1,15 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <title>SCL -- {% block title %}{% endblock %} </title>
+    {% include 'searchApp/base/head.html' %}
+    
+   <body>
+    {% include 'searchApp/base/nav.html' %}
+    {% block content %}
+    {% endblock %}
+
+    {% include 'searchApp/base/footer.html' %}
+    </body>
+</html>
+

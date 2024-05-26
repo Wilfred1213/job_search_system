@@ -1,0 +1,105 @@
+{% extends 'searchApp/base/base.html' %}
+{% load static %} 
+
+
+{% block title %} Job listing {% endblock %}
+
+{% block content %}
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'searchApp/img/hero/about.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Get your job</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End -->
+    <!-- Job List Area Start -->
+    <div class="job-listing-area pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <!-- Left content -->
+                
+                <!-- Right content -->
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <!-- Featured_job_start -->
+                    <section class="featured-job-area">
+                        <div class="container">
+                            <!-- Count of Job list Start -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="count-job mb-35">
+                                        <span>{{ count.counting }} Jobs found</span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Count of Job list End -->
+                            <!-- single-job-content -->
+                            <div class="single-job-items mb-30">
+                                {% for job in jobs %}
+                                <div class="job-items">
+                                    <div class="company-img">
+                                        <a href="{% url 'job_details' job_id=job.id %}"><img src="{{job.job.logo.url}}" alt="" style="width: 70px; height: 70px;"></a>
+                                    </div>
+                                    <div class="job-tittle job-tittle2">
+                                        <a href="{% url 'job_details' job_id=job.id %}">
+                                            <h4>{{job.job.job_title}}</h4>
+                                        </a>
+                                        <ul>
+                                            <li>{{job.job.job_category.name}}</li>
+                                            <li><i class="fas fa-map-marker-alt"></i>{{job.job.location}}</li>
+                                            <li>${{job.job.salary_range}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="items-link items-link2 f-right">
+                                    <a href="{% url 'job_details' job_id=job.id %}">{{job.job.employment_type}}</a>
+                                    <span>{{job.job.date_posted|timesince}}</span>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            
+                        </div>
+                    </section>
+                    <!-- Featured_job_end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Job List Area End -->
+    <!--Pagination Start  -->
+<div class="pagination-area pb-115 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="single-wrap d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">
+                            {% if jobs.has_previous %}
+                            <li class="page-item"><a class="page-link" href="{% url 'job_listing' %}?page={{ jobs.previous_page_number }}">Previous</a></li>
+                            {% endif %}
+                            {% for num in jobs.paginator.page_range %}
+                            <li class="page-item {% if jobs.number == num %} active {% endif %}"><a class="page-link" href="{% url 'job_listing' %}?page={{ num }}">{{ num }}</a></li>
+                            {% endfor %}
+                            {% if jobs.has_next %}
+                            <li class="page-item"><a class="page-link" href="{% url 'job_listing' %}?page={{ jobs.next_page_number }}">Next</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Pagination End  -->    
+</main>
+{% endblock %}

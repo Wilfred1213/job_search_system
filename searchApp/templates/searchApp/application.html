@@ -1,0 +1,92 @@
+{% extends 'authentication/base/base.html' %}
+{% load static %} 
+
+
+{% block title %} Application {% endblock %}
+
+{% block content %}
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">You are making application for the position of {{ job.job_title }}</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-12">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url({% static 'searchApp/img/jobsearch1.jpg' %});">
+			      </div>
+					<div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">{{ job.job_title }}</h3>
+                                {% for message in messages %}
+                                <div class="text-danger">
+                                    {{message}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                                <div class="w-100">
+                                    <p class="social-media d-flex justify-content-end">
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                    </p>
+                                </div>
+                        </div>
+
+					<form action="." class="signin-form" method="post">
+						{% csrf_token %}
+						<div class="form-group mb-3">
+			      			<label class="label" for="name">Full Name</label>
+			      			<input type="text" name="name" class="form-control" placeholder="Your full name" required>
+			      		</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">State of origin</label>
+							<input type="text" name="state" class="form-control" placeholder="Your state of origin" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">LGA</label>
+							<input type="text" name="lga" class="form-control" placeholder="Enter the local government of origin" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">Year of experience</label>
+							<input type="number" name="experience" class="form-control" placeholder="How many year of your experience" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">Date of Birth</label>
+							<input type="date" name="dob" class="form-control" placeholder="Location of your company" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">Resume File</label>
+							<input type="file" name="resume" class="form-control" placeholder="Location of your company" required>
+							
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">Cover letter</label>
+							<input type="file" name="letter" class="form-control" placeholder="Cover letter" required>
+							
+						</div>
+						
+						<div class="form-group mb-3">
+							<label class="label" for="password">Expected Salary</label>
+							<input type="salary" name="salary" class="form-control" placeholder="Salary range" required>
+						</div>
+                        
+                
+						<div class="form-group">
+							<button type="submit" class="form-control btn btn-primary rounded submit px-3">Apply</button>
+						</div>
+		            
+		          </form>
+		          
+		        </div>
+		      </div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+

@@ -1,0 +1,24 @@
+<div class="single-job-items mb-30">
+    {% for job in jobs %}
+    <div class="job-items">
+        <div class="company-img">
+            <a href="{% url 'job_details' job.id %}"><img src="{{job.job.logo.url}}" alt="" style="width: 70px; height: 70px;"></a>
+        </div>
+        <div class="job-tittle job-tittle2">
+            <a href="{% url 'job_details' job.id %}">
+                <h4>{{job.job.job_title}}</h4>
+            </a>
+            <ul>
+                <li>{{job.job.job_category.name}}</li>
+                <li><i class="fas fa-map-marker-alt"></i>{{job.job.location}}</li>
+                <li>${{job.job.salary_range}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="items-link items-link2 f-right">
+        <a href="job_details.html">{{job.job.employment_type}}</a>
+        <span>{{job.job.date_posted|timesince}}</span>
+    </div>
+    {% endfor %}
+</div>

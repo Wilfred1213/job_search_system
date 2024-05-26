@@ -1,0 +1,70 @@
+{% extends 'authentication/base/base.html' %}
+{% load static %} 
+
+
+{% block title %} Post a job {% endblock %}
+
+{% block content %}
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Post a Job</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-12">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url({% static 'searchApp/img/jobsearch1.jpg' %});">
+			      </div>
+					<div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Post a Job</h3>
+                                {% for message in messages %}
+                                <div class="text-danger">
+                                    {{message}}
+                                </div>
+                                {% endfor %}
+                            </div>
+                                <div class="w-100">
+                                    <p class="social-media d-flex justify-content-end">
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                        <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                    </p>
+                                </div>
+                        </div>
+
+					<form action="" class="signin-form" method="post">
+						{% csrf_token %}
+						
+						<div class="form-group mb-3">
+							<label class="label" for="name">Job Description</label>
+							<input type="text" name="description" class="form-control" placeholder="Job Description" required>
+						</div>
+						<div class="form-group mb-3">
+							<label class="label" for="name">Required Knowledge</label>
+							<input type="text" name="company" class="form-control" placeholder="Required Knowledge, Skills, and Abilities" required>
+						</div>
+						
+						<div class="form-group mb-3">
+							<label class="label" for="education">Education + Experience</label>
+							<input type="text" name="education" class="form-control" placeholder="Location of your company" required>
+						</div>
+						
+						<div class="form-group">
+							<button type="submit" class="form-control btn btn-primary rounded submit px-3">Save and Continue</button>
+						</div>
+						
+		            
+		          </form>
+		          
+		        </div>
+		      </div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+
